@@ -1,0 +1,62 @@
+// Custom.scss
+@import "_var";
+
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: arial;
+    background-color: $charcoal;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    h5,h2,p {
+        color: aliceblue;
+    }
+
+   
+
+    caption {
+        position:relative;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        color: aliceblue;
+    }
+
+}
+
+.lg-view{
+    display:inline-block;
+}
+ 
+.sm-view{
+    display:none;
+}
+
+@media screen and (max-width: 1000px) {
+    .lg-view{
+       display:none;
+    }
+
+    .sm-view{
+       display:inline-block;
+    }
+}
+
+
+
+
+@import "_header";
+@import "_form"

@@ -1,0 +1,85 @@
+@import "_var";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.containerForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+
+.containerFormMulti{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120%;
+    min-width: 40vh;
+}
+
+#form{
+    width: 50%;
+    max-width: 20vh auto 0 auto;
+    padding: 20px;
+    background-color: $offwhite;
+    border-radius: 4px;
+    font-size: 12px;
+    h2{
+        color: #000;
+        text-align: center;
+    }
+    button{
+        padding: 10px;
+        margin-top: 10px;
+        width: 100%;
+        color: white;
+        background-color: $offteal;
+        border: none;
+        border-radius: 4px;
+
+    }
+}
+
+
+
+
+
+
+
+.input-control{
+    display: flex;
+    flex-direction: column;
+    input{
+        border: 2px solid #f0f0f0;
+        border-radius: 4px;
+        display: block;
+        font-style: 12px;
+        padding: 10px;
+        width: 100%;
+    }
+}
+
+.input-control input:focus{
+    outline: 0;
+}
+
+.input-control.success input{
+    border-color: $correct;
+}
+.input-control.error input{
+    border-color: $error;
+}
+
+.input-control .error{
+    color: $error;
+    font-size: 9px;
+    height: 13px;
+}
