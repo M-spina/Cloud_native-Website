@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const PORT = 8080;
-//const bodyParser = require('body-parser')
 
 // Serve static files from the "src" directory
 app.use(express.static('src'));
@@ -45,7 +44,7 @@ const eventRoute = require('./routes/events')
 app.use('/events', eventRoute)
 
 const registrationRoute = require('./routes/registration')
-app.use('/registration/submit', registrationRoute)
+app.use('/register/submit', registrationRoute)
 
 // Error Handling if path not found
 app.use((req, res, next) => {
