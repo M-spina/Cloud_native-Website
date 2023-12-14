@@ -63,13 +63,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-// Routes
-const eventRoute = require('./routes/events')
-app.use('/events', eventRoute)
-
-const registrationRoute = require('./routes/registration')
-app.use('/registration/auth', registrationRoute)
-
 // Check if Server is running
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}/`)
