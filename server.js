@@ -11,7 +11,7 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// Render views
+// Views Routes
 app.get('/', (req, res) => {
     res.render('index')
 })
@@ -40,6 +40,12 @@ app.get('/report', (req, res) => {
     res.render('report')
 })
 
+// APIs Routes
+const eventRoute = require('./routes/events')
+app.use('/events', eventRoute)
+
+const registrationRoute = require('./routes/registration')
+app.use('/registration/submit', registrationRoute)
 
 // Error Handling if path not found
 app.use((req, res, next) => {
@@ -62,11 +68,11 @@ const eventRoute = require('./routes/events')
 app.use('/events', eventRoute)
 
 const registrationRoute = require('./routes/registration')
-app.use('/registration/submit', registrationRoute)
+app.use('/registration/auth', registrationRoute)
 
 // Check if Server is running
 app.listen(PORT, () => {
-    console.log(`Server is running on PORT: ${PORT}`)
+    console.log(`Server is running on http://localhost:${PORT}/`)
 
 })
 
