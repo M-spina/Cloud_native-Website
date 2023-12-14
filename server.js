@@ -32,7 +32,7 @@ app.get('/login', (req, res) => {
     res.render('login')
 })
 
-app.get('/registration', (req, res) => {
+app.get('/register', (req, res) => {
     res.render('registration')
 })
 
@@ -62,7 +62,7 @@ const eventRoute = require('./routes/events')
 app.use('/events', eventRoute)
 
 const registrationRoute = require('./routes/registration')
-app.use('/registration/auth', registrationRoute)
+app.use('/registration/submit', registrationRoute)
 
 // Check if Server is running
 app.listen(PORT, () => {
