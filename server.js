@@ -60,6 +60,9 @@ app.use('/register/submit', registerAPI)
 const loginAPI = require('./routes/login')
 app.use('/login/submit', loginAPI)
 
+const createEventAPI = require('./routes/create-event')
+app.use('/events/create', createEventAPI)
+
 // Error Handling if path not found
 app.use((req, res, next) => {
     const error = new Error('Not found');

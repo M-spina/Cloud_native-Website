@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/main.css">
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer src="js/events.js"></script>
+    <script defer src="/js/events.js"></script>
     <title>Test</title>
 </head>
 
@@ -31,20 +30,20 @@
 
     <main>
         <div class="containerForm">
-            <form id="form" action="/">
+            <form id="form" action="/events/create" method="POST" autocomplete="off">
                 <h2><strong>Create Event</strong></h2>
                 <div class="input-control">
-                    <label for="eventName"><strong>Event Name</strong></label>
+                    <label for="eventName"><strong>Name</strong></label>
                     <input id="eventName" name="eventName" type="text">
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
-                    <label for="eventLocation"><strong>Event Location</strong></label>
+                    <label for="eventLocation"><strong>Location</strong></label>
                     <input id="eventLocation" name="eventLocation" type="text">
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
-                    <label for="eventDate"><strong>Event Date</strong></label>
+                    <label for="eventDate"><strong>Date</strong></label>
                     <input id="eventDate" name="eventDate" type="date">
                     <div class="error"></div>
                 </div>
@@ -58,7 +57,7 @@
                     <input id="imageFile" name="imageFile" type="file">
                     <div class="error"></div>
                 </div>
-                <button type="submit"><strong>Sign Up</strong></button>
+                <button type="submit"><strong>Create</strong></button>
 
             </form>
         </div>
