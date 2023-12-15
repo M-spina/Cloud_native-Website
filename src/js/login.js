@@ -10,7 +10,6 @@ document.getElementById('form').addEventListener('submit', async function (event
             body: JSON.stringify({
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
-                //auth: auth
             }),
         });
 
@@ -18,7 +17,7 @@ document.getElementById('form').addEventListener('submit', async function (event
 
         if (response.ok) {
             alert(data.message);
-            window.location.href = '/'
+            window.location.href = '/login'
         } else {
             alert(`${data.code} /// ${data.error}`);
         }
