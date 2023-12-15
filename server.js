@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const PORT = 8080;
+const fadmin = require('firebase-admin');
+const credentials = require('./src/js/serviceAccountKey.json');
 
 // Serve static files from the "src" directory
 app.use(express.static('src'));
@@ -10,8 +12,17 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-// Views Routes
+// Initializing Firebase 
+fadmin.initializeApp({
+    credential: fadmin.credential.cert(credentials)
+});
+
+// Views Routing
 app.get('/', (req, res) => {
+    res.render('index')
+})
+
+app.get('/home', (req, res) => {
     res.render('index')
 })
 
@@ -39,12 +50,15 @@ app.get('/report', (req, res) => {
     res.render('report')
 })
 
-// APIs Routes
-const eventRoute = require('./routes/events')
-app.use('/events', eventRoute)
+// APIs Routing
+const eventAPI = require('./routes/events')
+app.use('/events', eventAPI)
 
-const registrationRoute = require('./routes/registration')
-app.use('/register/submit', registrationRoute)
+const registerAPI = require('./routes/registration')
+app.use('/register/submit', registerAPI)
+
+const loginAPI = require('./routes/login')
+app.use('/login/submit', loginAPI)
 
 // Error Handling if path not found
 app.use((req, res, next) => {

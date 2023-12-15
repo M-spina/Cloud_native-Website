@@ -20,7 +20,7 @@ document.getElementById('form').addEventListener('submit', async function (event
         if (response.ok) {
             alert(data.message);
         } else {
-            alert(`Error: ${data.error}`);
+            alert(`${data.code} /// ${data.error}`);
         }
     } catch (error) {
         console.error(error);

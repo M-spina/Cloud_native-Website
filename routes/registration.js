@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const fadmin = require('firebase-admin');
-const credentials = require('../src/js/serviceAccountKey.json');
-
-fadmin.initializeApp({
-    credential: fadmin.credential.cert(credentials)
-});
 
 router.post('/', async (req, res, next) => {
     const user = {
@@ -24,7 +19,6 @@ router.post('/', async (req, res, next) => {
             email: user.email,
             password: user.password,
             emailVerified: false,
-            disabled: false
         });
 
         res.status(200).json({
@@ -42,6 +36,7 @@ router.post('/', async (req, res, next) => {
         // Handle error
         //console.error(err);
         res.status(500).json({
+            code: err.code,
             error: err.message
         });
     }
