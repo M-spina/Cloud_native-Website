@@ -13570,3 +13570,34 @@ button:hover {
   font-size: 9px;
   height: 13px;
 }
+
+.fadein {
+  -webkit-animation: fadeTransition 750ms;
+          animation: fadeTransition 750ms;
+}
+
+@-webkit-keyframes fadeTransition {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeTransition {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
