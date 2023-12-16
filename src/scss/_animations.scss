@@ -1,0 +1,59 @@
+// pure css implementaion of fade in animation
+.fadein{
+    animation: fadeTransition 750ms;
+
+}
+
+@keyframes fadeTransition {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+// css and js implmentaion of fade in 
+
+.hidden{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 1s;
+    
+}
+
+.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+    .card{
+        transition-delay: 200ms;
+    }
+}
+
+@media screen and (min-width: 700px){
+    .c1{
+        transition-delay: 200ms;
+    }
+    
+    .c2{
+        transition-delay: 500ms;
+    }
+    
+    .c3{
+        transition-delay: 800ms;
+    }
+    
+    .c4{
+        transition-delay: 1200ms;
+    }
+}
