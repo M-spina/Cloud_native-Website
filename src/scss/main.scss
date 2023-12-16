@@ -16,10 +16,11 @@
 
 body {
     font-family: arial;
-    background-color: $charcoal;
+    //background-color: $charcoal;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(180deg,$charcoal,black);
 
     h5,h2,p {
         color: aliceblue;
@@ -54,6 +55,8 @@ body {
        display:inline-block;
     }
 }
+
+
 
 
 

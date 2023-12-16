@@ -40,6 +40,13 @@ app.get('/report', (req, res) => {
     res.render('report')
 })
 
+app.get('/createE', (req, res) => {
+    res.render('createE')
+})
+
+    
+
+
 // APIs Routes
 const eventRoute = require('./routes/events')
 app.use('/events', eventRoute)
