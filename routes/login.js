@@ -17,12 +17,13 @@ router.post('/', async (req, res, next) => {
     // Firebase Authentication
     const app = initializeApp(firebaseConfig);
     const auth = firebase.getAuth(app)
-    const user = {
-        email: req.body.email,
-        password: req.body.password
-    };
+    
     try { 
-        const userCredential = await firebase.signInWithEmailAndPassword(
+        const user = {
+            email: req.body.email,
+            password: req.body.password
+        };
+        await firebase.signInWithEmailAndPassword(
             auth,
             user.email, 
             user.password
