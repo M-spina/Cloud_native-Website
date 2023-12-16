@@ -13601,3 +13601,41 @@ button:hover {
             transform: translateY(0);
   }
 }
+.hidden {
+  opacity: 0;
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    -webkit-transition-delay: 200ms;
+            transition-delay: 200ms;
+  }
+}
+@media screen and (min-width: 700px) {
+  .c1 {
+    -webkit-transition-delay: 200ms;
+            transition-delay: 200ms;
+  }
+  .c2 {
+    -webkit-transition-delay: 500ms;
+            transition-delay: 500ms;
+  }
+  .c3 {
+    -webkit-transition-delay: 800ms;
+            transition-delay: 800ms;
+  }
+  .c4 {
+    -webkit-transition-delay: 1200ms;
+            transition-delay: 1200ms;
+  }
+}
