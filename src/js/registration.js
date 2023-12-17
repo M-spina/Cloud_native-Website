@@ -1,41 +1,48 @@
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
+    
+    // Disable submit button
+    const submitButton = document.getElementById('submitBtn');
+    submitButton.disabled = true;
+
     try {
-        var isValid = validateInputs();
+        const response = await fetch('/register/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            }),
+        });
 
-        if (isValid == "0") {
-            const response = await fetch('/register/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fname: document.getElementById('fname').value,
-                    lname: document.getElementById('lname').value,
-                    email: document.getElementById('email').value,
-                    password: document.getElementById('password').value,
-                }),
-            });
+        const data = await response.json();
+        var isValid = validateInputs(data.code);
 
-            const data = await response.json();
-
-            if (data.code === 'auth/email-already-exists') {
-                setError(email, 'The email address is already in use by another account');
-            } else if (response.ok) {
+        if (!isValid){
+            if (response.ok) {
                 alert(data.message);
+                window.location.href = '/register'
             } else {
                 console.error(`${data.code} <> ${data.error}`);
             }
         } else {
             console.error('Form validation failed');
         }
+        
     } catch (error) {
         console.error(error);
         alert('An unexpected error occurred.');
+    } finally {
+        // Enable submit button after fetch completes
+        submitButton.disabled = false;
     }
 });
 
-const setError= (element,message) =>{
+const setError = (element,message) =>{
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
@@ -60,8 +67,8 @@ const isValidEmail = email =>{
     return re.test(String(email).toLocaleLowerCase());
 }
 
-const validateInputs = () =>{
-    var isValid = 0;
+const validateInputs = (dataCode) =>{
+    let isValid = true;
     const fnameValue = fname.value.trim();
     const lnameValue = lname.value.trim();
     const emailValue = email.value.trim();
@@ -70,44 +77,47 @@ const validateInputs = () =>{
 
     if(fnameValue === ''){
         setError(fname, 'First Name is required');
-        isValid++;
+        isValid = false;
     }else{
         setSuccess(fname);
     }
 
     if(lnameValue === ''){
         setError(lname, 'Last Name is required');
-        isValid++;
+        isValid = false;
     }else{
         setSuccess(lname);
     }
 
-    if(emailValue ===''){
+    if(emailValue === ''){
         setError(email, 'Email is required');
-        isValid++;
+        isValid = false;
     }else if(!isValidEmail(emailValue)){
         setError(email, 'Provide a vaiid email address');
-        isValid++;
+        isValid = false;
+    }else if (dataCode === 'auth/email-already-exists') {
+        setError(email, 'The email address is already in use by another account');
+        isValid = false;
     }else{
         setSuccess(email);
     }
 
     if(passwordValue === ''){
         setError(password, 'Password is required');
-        isValid++;
+        isValid = false;
     }else if( passwordValue.length < 6){
         setError(password, 'Password must be at least 6 characters')
-        isValid++;
+        isValid = false;
     }else{
         setSuccess(password)
     }
 
     if(password2Value === ''){
         setError(password2, 'Please confirm your password');
-        isValid++;
+        isValid = false;
     }else if( password2Value !== passwordValue){
         setError(password2, 'Password does not match')
-        isValid++;
+        isValid = false;
     }else{
         setSuccess(password2)
     }
