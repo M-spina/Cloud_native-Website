@@ -51,13 +51,13 @@ app.get('/report', (req, res) => {
 })
 
 // APIs Routing
-const eventAPI = require('./routes/events')
+const eventAPI = require('./routes/show-events')
 app.use('/events', eventAPI)
 
-const registerAPI = require('./routes/registration')
+const registerAPI = require('./routes/register-submit')
 app.use('/register/submit', registerAPI)
 
-const loginAPI = require('./routes/login')
+const loginAPI = require('./routes/login-submit')
 app.use('/login/submit', loginAPI)
 
 const createEventAPI = require('./routes/create-event')
