@@ -36,6 +36,11 @@ header{
 }
 
 button{
+    font-family:"Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: $offwhite;
+    text-decoration: none;
     padding: 9px 25px;
     background-color: $offteal;
     border: none;
