@@ -13411,6 +13411,10 @@ body caption {
     display: inline-block;
   }
 }
+.bigger {
+  width: 400px;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
