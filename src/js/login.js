@@ -1,16 +1,56 @@
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+document.getElementById('form').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
+    // Disable submit button
+    const submitButton = document.getElementById('submitBtn');
+    submitButton.disabled = true;
 
-    validateInputs();
+    try {
+        const response = await fetch('/login/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            }),
+        });
+
+        const data = await response.json();
+
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+
+        if (emailValue === '' || data.code === 'auth/invalid-email') {
+            setError(email, 'Invalid Email');
+        }else{
+            setSuccess(email);
+        }
+
+        if (passwordValue === '' || data.code === 'auth/missing-password' || data.code === 'auth/invalid-credential') {
+            setError(password, 'Invalid Password');
+        }else{
+            setSuccess(password);
+        }
+        
+        if (response.ok) {
+            alert(data.message);
+            window.location.href = '/login'
+        } else {
+            console.error(`${data.code} <> ${data.error}`);
+        }
+        
+    } catch (error) {
+        console.error(error);
+        alert('An unexpected error occurred.');
+    } finally {
+        // Enable submit button after fetch completes
+        submitButton.disabled = false;
+    }
 });
 
-const setError= (element,message) =>{
+const setError = (element,message) =>{
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
@@ -22,50 +62,8 @@ const setError= (element,message) =>{
 const setSuccess = element => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
+
     errorDisplay.innerText = '';
     inputControl.classList.add('success');
     inputControl.classList.remove('error')
-}
-
-const isValidEmail = email =>{
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLocaleLowerCase());
-}
-
-const validateInputs = () =>{
-    const usernameValue = username.value.trim();
-    const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
-
-    if(usernameValue === ''){
-        setError(username, 'Username is required')
-    }else{
-        setSuccess(username);
-    }
-
-    if(emailValue ===''){
-        setError(email, 'Email is required');
-    }else if(!isValidEmail(emailValue)){
-        setError(email, 'Provide a vaiid email address');
-    }else{
-        setSuccess(email);
-    }
-
-    if(passwordValue === ''){
-        setError(password, 'Password is required');
-    }else if( passwordValue.length< 8){
-        setError(password, 'Password must be at least 8 character.')
-    }else{
-        setSuccess(password)
-    }
-
-    if(password2Value === ''){
-        setError(password2, 'Please confimr your password');
-    }else if( password2Value !== passwordValue){
-        setError(password2, 'Password does not match')
-    }else{
-        setSuccess(password2)
-    }
-    
 }
