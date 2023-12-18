@@ -84,6 +84,42 @@
 
     </main>
 
+    <main class="hidden c2">
+        <div class="containerForm">
+            <form id="form" action="/events/create" method="POST" autocomplete="off">
+                <h2><strong>Create Event</strong></h2>
+                <div class="input-control">
+                    <label for="eventName"><strong>Name</strong></label>
+                    <input id="eventName" name="eventName" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventLocation"><strong>Location</strong></label>
+                    <input id="eventLocation" name="eventLocation" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventDate"><strong>Date</strong></label>
+                    <input id="eventDate" name="eventDate" type="date">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventDescription"><strong>Description</strong></label>
+                    <textarea rows="5" placeholder="Enter description" id="eventDescription" name="eventDescription"></textarea>
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="imageFile"><strong>Image file (Limit 10MB)</strong> </label>
+                    <input id="imageFile" name="imageFile" type="file">
+                    <div class="error"></div>
+                </div>
+                <button type="submit"><strong>Create</strong></button>
+
+            </form>
+        </div>
+
+    </main>
+
     
 
     <section class="hidden c1 " style="position: relative; top: 150px; display: flex; align-items: center; justify-content: center;">
