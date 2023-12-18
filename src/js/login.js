@@ -1,3 +1,26 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCNeKFAK02fsjZ_zL8S_HVMGiktJYldnXY",
+    authDomain: "university-events-manager.firebaseapp.com",
+    projectId: "university-events-manager",
+    storageBucket: "university-events-manager.appspot.com",
+    messagingSenderId: "20800034316",
+    appId: "1:20800034316:web:3c052e45a594003d9b4029",
+    measurementId: "G-8WZ1BEWCXF"
+};
+
+console.log(firebaseConfig);
+
+// Initialize Firebase app
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Create a GoogleAuthProvider instance
+const provider = new GoogleAuthProvider();
+
+
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -49,6 +72,29 @@ document.getElementById('form').addEventListener('submit', async function (event
         submitButton.disabled = false;
     }
 });
+
+document.getElementById('googleSignOn').addEventListener('click', async function (event) {
+    event.preventDefault();
+    console.log("Button Clicked");
+    try {
+        
+
+        // Sign in with a popup
+        const result = await signInWithPopup(auth, provider);
+
+        // Access user information
+        const user = result.user;
+        console.log(user);
+
+        // Redirect or perform additional actions as needed
+        window.location.href = '/'; // Change the URL to your desired destination
+
+    } catch (error) {
+        console.error(error);
+        alert('An unexpected error occurred.');
+    }
+});
+
 
 const setError = (element,message) =>{
     const inputControl = element.parentElement;

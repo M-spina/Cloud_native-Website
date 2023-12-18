@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 8080;
 const fadmin = require('firebase-admin');
-const credentials = require('./src/js/serviceAccountKey.json');
+const serviceAccountKey = require('./firebase/serviceAccountKey.json');
 
 // Serve static files from the "src" directory
 app.use(express.static('src'));
@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}))
 
 // Initializing Firebase 
 fadmin.initializeApp({
-    credential: fadmin.credential.cert(credentials)
+    credential: fadmin.credential.cert(serviceAccountKey)
 });
 
 // Views Routing

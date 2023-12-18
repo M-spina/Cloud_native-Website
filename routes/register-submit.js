@@ -3,17 +3,16 @@ const router = express.Router();
 const fadmin = require('firebase-admin');
 
 router.post('/', async (req, res, next) => {
-    const user = {
-        email: req.body.email,
-        password: req.body.password
-    }
-    const userInfo = {
-        firstname: req.body.fname,
-        lastname: req.body.lname
-    }
-    //console.log(user)
-    //console.log(userInfo)
+
     try {
+        const user = {
+            email: req.body.email,
+            password: req.body.password
+        }
+        const userInfo = {
+            firstname: req.body.fname,
+            lastname: req.body.lname
+        }
         // Firebase Authentication
         const userResponse = await fadmin.auth().createUser({
             email: user.email,
