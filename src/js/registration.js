@@ -6,24 +6,28 @@ document.getElementById('form').addEventListener('submit', async function (event
     submitButton.disabled = true;
 
     try {
-        const response = await fetch('/register/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                fname: document.getElementById('fname').value,
-                lname: document.getElementById('lname').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-            }),
-        });
+        var isValid = validateInputs();
 
-        const data = await response.json();
-        var isValid = validateInputs(data.code);
+        if (isValid == true){
 
-        if (!isValid){
-            if (response.ok) {
+            const response = await fetch('/register/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fname: document.getElementById('fname').value,
+                    lname: document.getElementById('lname').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.code === 'auth/email-already-exists') {
+                setError(email, 'The email address is already in use by another account');
+            }else if (response.ok) {
                 alert(data.message);
                 window.location.href = '/register'
             } else {
@@ -67,7 +71,7 @@ const isValidEmail = email =>{
     return re.test(String(email).toLocaleLowerCase());
 }
 
-const validateInputs = (dataCode) =>{
+const validateInputs = () =>{
     let isValid = true;
     const fnameValue = fname.value.trim();
     const lnameValue = lname.value.trim();
@@ -94,9 +98,6 @@ const validateInputs = (dataCode) =>{
         isValid = false;
     }else if(!isValidEmail(emailValue)){
         setError(email, 'Provide a vaiid email address');
-        isValid = false;
-    }else if (dataCode === 'auth/email-already-exists') {
-        setError(email, 'The email address is already in use by another account');
         isValid = false;
     }else{
         setSuccess(email);

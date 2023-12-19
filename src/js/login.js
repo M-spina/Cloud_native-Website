@@ -1,25 +1,9 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { doc, setDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCNeKFAK02fsjZ_zL8S_HVMGiktJYldnXY",
-    authDomain: "university-events-manager.firebaseapp.com",
-    projectId: "university-events-manager",
-    storageBucket: "university-events-manager.appspot.com",
-    messagingSenderId: "20800034316",
-    appId: "1:20800034316:web:3c052e45a594003d9b4029",
-    measurementId: "G-8WZ1BEWCXF"
-};
-
-console.log(firebaseConfig);
-
-// Initialize Firebase app
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Create a GoogleAuthProvider instance
-const provider = new GoogleAuthProvider();
-
+const response = await fetch('./firebase/firebaseConfig.json');
+const firebaseConfig = await response.json();
 
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -75,26 +59,33 @@ document.getElementById('form').addEventListener('submit', async function (event
 
 document.getElementById('googleSignOn').addEventListener('click', async function (event) {
     event.preventDefault();
-    console.log("Button Clicked");
+
     try {
-        
+        // Initialize Firebase app
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Create a GoogleAuthProvider instance
+        const provider = new GoogleAuthProvider();
 
         // Sign in with a popup
         const result = await signInWithPopup(auth, provider);
 
-        // Access user information
+        // Add user information to Firestore
         const user = result.user;
-        console.log(user);
+        const uid = user.uid;
+        const fullname = user.displayName;
 
-        // Redirect or perform additional actions as needed
-        window.location.href = '/'; // Change the URL to your desired destination
+        await setDoc(doc(db,"students",uid),{fullname});
+
+        //window.location.href = '/login'; 
 
     } catch (error) {
         console.error(error);
-        alert('An unexpected error occurred.');
+        //alert('An unexpected error occurred.');
     }
 });
-
 
 const setError = (element,message) =>{
     const inputControl = element.parentElement;

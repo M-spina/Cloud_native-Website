@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const firebase = require('firebase/auth');
 const { initializeApp } = require("firebase/app");
-const firebaseConfig = require('../firebase/firebaseConfig.json');
+const firebaseConfig = require('../src/firebase/firebaseConfig.json');
 
 router.post('/', async (req, res, next) => {
     
@@ -32,7 +32,6 @@ router.post('/', async (req, res, next) => {
             error: err.message
         });
     }
-
 });
 
 module.exports = router;

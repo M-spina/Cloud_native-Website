@@ -9,10 +9,8 @@ router.post('/', async (req, res, next) => {
             email: req.body.email,
             password: req.body.password
         }
-        const userInfo = {
-            firstname: req.body.fname,
-            lastname: req.body.lname
-        }
+        const fullname = req.body.fname + ' ' + req.body.lname;
+
         // Firebase Authentication
         const userResponse = await fadmin.auth().createUser({
             email: user.email,
@@ -24,16 +22,17 @@ router.post('/', async (req, res, next) => {
             message: 'User registered successfully'
         });
 
+        // Add user information to Firestore
         if (res.status = 200){
             // Firebase Firestore
             const uid = userResponse.uid;
             const db = fadmin.firestore();
-            const userInfoResponse = await db.collection("students").doc(uid).set(userInfo);
+            await db.collection("students").doc(uid).set({fullname});
         }
 
     } catch (err) {
         // Handle error
-        //console.error(err);
+        console.error(err);
         res.status(500).json({
             code: err.code,
             error: err.message

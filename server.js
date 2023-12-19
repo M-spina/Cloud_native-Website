@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 8080;
 const fadmin = require('firebase-admin');
-const serviceAccountKey = require('./firebase/serviceAccountKey.json');
+const serviceAccountKey = require('./src/firebase/serviceAccountKey.json');
 
 // Serve static files from the "src" directory
 app.use(express.static('src'));
@@ -50,12 +50,10 @@ app.get('/report', (req, res) => {
     res.render('report')
 })
 
-
 app.get('/createE', (req, res) => {
     res.render('createE')
 })
 
-    
 
 // APIs Routing
 const eventAPI = require('./routes/show-events')
