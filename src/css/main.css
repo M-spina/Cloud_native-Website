@@ -13427,7 +13427,9 @@ header {
           align-items: center;
   padding: 30px 10%;
 }
-header li, header a, header button {
+header li,
+header a,
+header button {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -13446,6 +13448,18 @@ header h1, header .h1 {
   padding: 0px 20px;
 }
 .nav__links li a {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.nav__links_home {
+  list-style: none;
+}
+.nav__links_home li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+.nav__links_home li a {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
@@ -13473,6 +13487,121 @@ button:hover {
   background-color: rgba(0, 136, 169, 0.8);
 }
 
+.ext_btn {
+  border-radius: 10px;
+  width: 100%;
+}
+
+#menu__toggle {
+  opacity: 0;
+}
+
+#menu__toggle:checked + .menu__btn > span {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+#menu__toggle:checked ~ .menu__box {
+  right: 0 !important;
+}
+
+.menu__btn {
+  display: none;
+  position: relative;
+  top: 0px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+
+.menu__btn > span::before {
+  content: "";
+  top: -8px;
+}
+
+.menu__btn > span::after {
+  content: "";
+  top: 8px;
+}
+
+.menu__box {
+  display: block;
+  display: none;
+  position: fixed;
+  background: rgba(65, 66, 66, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  z-index: 1;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 40%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+
+.menu__item {
+  display: block;
+  display: none;
+  padding: 12px 24px;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+
+.menu__item:hover {
+  background-color: #24252A;
+}
+
+@media screen and (max-width: 963px) {
+  .nav__links,
+  .cta {
+    display: none;
+  }
+  .nav__links_home,
+  .toggle_btn3 {
+    display: block;
+  }
+  .menu__btn,
+  .menu__item,
+  .menu__box {
+    display: block;
+  }
+}
 .flex-container {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -14,7 +14,7 @@
 <body>
 
     <header>
-        <a class="nav__links" href="/">
+        <a class="nav__links_home" href="/">
             <h1 class="ani">Uni Auto</h1>
         </a>
         <nav>
@@ -27,6 +27,21 @@
             </ul>
         </nav>
         <a class="cta" href="/contacts"><button>Contact</button></a>
+
+        <div class="hamburger-menu" style="background-color: transparent; width: 50px;">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span class="asad"></span>
+            </label>
+
+            <ul class="menu__box">
+                <li><a class="menu__item" href="/login">login</a></li>
+                <li><a class="menu__item" href="/events">Events</a></li>
+                <li><a class="menu__item" href="/attendance">Attendance</a></li>
+                <li><a class="menu__item" href="/report">Report</a></li>
+                <li><a class="menu__item " href="/contacts"><button class="ext_btn">Contact</button></a></li>
+            </ul>
+        </div>
     </header>
 
     <div class="container">
