@@ -13861,3 +13861,13 @@ span.asad {
   -webkit-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
           box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
 }
+
+.sign-out-btn {
+  background-color: #715353;
+}
+.sign-out-btn:hover {
+  background-color: #6b3535;
+}
+.sign-out-btn:active {
+  background-color: #6e2424;
+}

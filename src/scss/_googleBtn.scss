@@ -34,3 +34,14 @@
     
     
 }
+
+.sign-out-btn{
+    background-color: #715353;
+    &:hover {
+        background-color:#6b3535;
+    }
+    
+    &:active {
+      background-color:#6e2424;
+    }
+}
