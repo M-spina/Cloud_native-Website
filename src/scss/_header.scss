@@ -71,13 +71,17 @@ button {
 }
 
 button:hover {
-    background-color: rgba(0, 136, 169, 0.8);
+    background-color: $teal;
 }
 
 .ext_btn {
     border-radius: 10px;
     width: 100%;
- }
+}
+
+.hamburger-menu {
+    display: none;
+}
 
 #menu__toggle {
     opacity: 0;
@@ -134,7 +138,7 @@ button:hover {
 }
 
 .menu__box {
-    display: block;
+    //display: block;
     display: none;
     position: fixed;
     background: rgba(65, 66, 66, 0.5);
@@ -154,11 +158,12 @@ button:hover {
 }
 
 .menu__item {
-    display: block;
+    //display: block;
     display: none;
     padding: 12px 24px;
     color: #ffffff;
-    font-family: 'Montserrat', sans-serif;;
+    font-family: 'Montserrat', sans-serif;
+    ;
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -178,7 +183,8 @@ button:hover {
     }
 
     .nav__links_home,
-    .toggle_btn3 {
+    .toggle_btn3,
+    .hamburger-menu {
         display: block;
 
     }
