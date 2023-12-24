@@ -17,7 +17,7 @@
 <body>
 
     <header>
-        <a class="nav__links" href="/">
+        <a class="nav__links_home" href="/">
             <h1 class="ani">UniAuto</h1>
         </a>
         <nav>
@@ -30,6 +30,21 @@
             </ul>
         </nav>
         <a class="cta" href="/contacts"><button>Contact</button></a>
+
+        <div class="hamburger-menu" style="background-color: transparent; width: 50px;">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span class="asad"></span>
+            </label>
+
+            <ul class="menu__box">
+                <li><a class="menu__item" href="/login">login</a></li>
+                <li><a class="menu__item" href="/events">Events</a></li>
+                <li><a class="menu__item" href="/attendance">Attendance</a></li>
+                <li><a class="menu__item" href="/report">Report</a></li>
+                <li><a class="menu__item " href="/contacts"><button class="ext_btn">Contact</button></a></li>
+            </ul>
+        </div>
     </header>
 
     <div class="container">
@@ -37,7 +52,7 @@
             <div class="col-sm-12 col-md-12 col-xlg-12 hidden" style="position:relative; top: 100px;">
                 <h2 class="text-center">Welcome to the University Events Portal</h2>
             </div>
-            <div class="col-sm-6 col-md-8 col-xlg-10 hidden c1" style="position:relative; top: 100px;">
+            <div class="col-sm-10 col-md-10 col-xlg-10 hidden c1" style="position:relative; top: 100px;">
                 <div class="card text-center h-100" style="background-color: #32333a">
                     <div class="card-body">
                         <p class="card-text">your gateway to engaging university events. Faculty members can effortlessly
@@ -64,17 +79,37 @@
                     <input id="password" name="password" type="password">
                     <div class="error"></div>
                 </div>
-                <button id="submitBtn" type="submit"><strong>Sign Up</strong></button>
+                <button id="submitBtn" type="submit"><strong>Sign In</strong></button>
 
             </form>
         </div>
 
 
-        <div class="container" style="position: relative; top: -200px;">
+        <div class="container" style="position: relative; top: -250px;">
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-12 col-xlg-12">
                     <section class="hidden c1 " style=" display: flex; align-items: center; justify-content: center;">
-                        <a class="cta bigger" href="/register"><button class="bigger">Registration</button></a>
+                        <button type="button" class="login-with-google-btn bigger" > Sign in with Google </button>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="position: relative; top: -220px;">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-xlg-12">
+                    <section class="hidden c1 " style=" display: flex; align-items: center; justify-content: center;">
+                        <a class=" bigger" href="/register"><button class="bigger">Registration</button></a>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="position: relative; top: -190px;">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-xlg-12">
+                    <section class="hidden c1 " style=" display: flex; align-items: center; justify-content: center;">
+                        <a class=" bigger"><button class="bigger sign-out-btn">Sign Out</button></a>
                     </section>
                 </div>
             </div>

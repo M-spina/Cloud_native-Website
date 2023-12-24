@@ -14,7 +14,7 @@
 <body>
 
     <header>
-        <a class="nav__links" href="/">
+        <a class="nav__links_home" href="/">
             <h1 class="ani">Uni Auto</h1>
         </a>
         <nav>
@@ -27,6 +27,21 @@
             </ul>
         </nav>
         <a class="cta" href="/contacts"><button>Contact</button></a>
+
+        <div class="hamburger-menu" style="background-color: transparent; width: 50px;">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span class="asad"></span>
+            </label>
+
+            <ul class="menu__box">
+                <li><a class="menu__item" href="/login">login</a></li>
+                <li><a class="menu__item" href="/events">Events</a></li>
+                <li><a class="menu__item" href="/attendance">Attendance</a></li>
+                <li><a class="menu__item" href="/report">Report</a></li>
+                <li><a class="menu__item " href="/contacts"><button class="ext_btn">Contact</button></a></li>
+            </ul>
+        </div>
     </header>
 
     <div class="container">
@@ -66,8 +81,10 @@
                 <thead>
                     <tr>
                         <th scope="col"></th>
+                        <th scope="col">Category</th>
                         <th scope="col">Name</th>
                         <th scope="col">Location</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Image</th>
                         <th scope="col">Description</th>
                         <th scope="col">Actions</th>
@@ -76,23 +93,29 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
+                        <td>Sports</td>
                         <td>Swimming</td>
                         <td>Canada Water</td>
+                        <td>08/01/24</td>
                         <td>No_Image</td>
                         <td>We will be swimming on the day</td>
                         <td>Join now</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
+                        <td>Games/Gaming</td>
                         <td>MiniGolf</td>
                         <td>Oxfrod-Street</td>
+                        <td>07/01/24</td>
                         <td>No_Image</td>
                         <td>We will be MiniGolfing on the day</td>
                         <td>Join now</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
+                        <td>Food/Drinks</td>
                         <td>Bar-Hopping</td>
+                        <td>11/01/24</td>
                         <td>Angle</td>
                         <td>No_Image</td>
                         <td>We will be drink alot on the day</td>
