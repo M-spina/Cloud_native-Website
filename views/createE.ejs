@@ -68,9 +68,25 @@
 
 
     <main class="hidden c2">
-        <div class="containerForm">
+        <div class="containerForm" style="position:relative; top: 100px;">
             <form id="form" action="/events/create" method="POST" autocomplete="off">
                 <h2><strong>Create Event</strong></h2>
+                <div class="input-control">
+                    <label for="categories"><strong>Category</strong></label>
+                    <select id="categories" name="categories">
+                        <option value="seminars">Academic Lectuer/Seminars</option>
+                        <option value="art">Art Exhibitions and Performances</option>
+                        <option value="career">Career Fairs and Networking</option>
+                        <option value="cultural">Cultural Festivals</option>
+                        <option value="food/drink">Food/Drinks</option>
+                        <option value="game">Games/Gaming</option>
+                        <option value="health">Health and Wellness Programs</option>
+                        <option value="party">Social Gatherings and Parties</option>
+                        <option value="sport">Sports</option>
+                        <option value="sClub">Student Club and Organization Meetings</option>
+                    </select>
+                    <div class="error"></div>
+                </div>
                 <div class="input-control">
                     <label for="eventName"><strong>Name</strong></label>
                     <input id="eventName" name="eventName" type="text">
@@ -88,7 +104,8 @@
                 </div>
                 <div class="input-control">
                     <label for="eventDescription"><strong>Description</strong></label>
-                    <textarea rows="5" placeholder="Enter description" id="eventDescription" name="eventDescription"></textarea>
+                    <textarea rows="5" placeholder="Enter description" id="eventDescription"
+                        name="eventDescription"></textarea>
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
