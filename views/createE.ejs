@@ -72,6 +72,16 @@
             <form id="form" action="/events/create" method="POST" autocomplete="off">
                 <h2><strong>Create Event</strong></h2>
                 <div class="input-control">
+                    <label for="eventName"><strong>Name</strong></label>
+                    <input id="eventName" name="eventName" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventLocation"><strong>Location</strong></label>
+                    <input id="eventLocation" name="eventLocation" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
                     <label for="categories"><strong>Category</strong></label>
                     <select id="categories" name="categories">
                         <option value="seminars">Academic Lectuer/Seminars</option>
@@ -85,16 +95,6 @@
                         <option value="sport">Sports</option>
                         <option value="sClub">Student Club and Organization Meetings</option>
                     </select>
-                    <div class="error"></div>
-                </div>
-                <div class="input-control">
-                    <label for="eventName"><strong>Name</strong></label>
-                    <input id="eventName" name="eventName" type="text">
-                    <div class="error"></div>
-                </div>
-                <div class="input-control">
-                    <label for="eventLocation"><strong>Location</strong></label>
-                    <input id="eventLocation" name="eventLocation" type="text">
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
