@@ -9,12 +9,13 @@ app.use(express.static('src'));
 // Set EJS as the view engine
 app.set('view engine', 'ejs')
 
-app.use(express.json())
+app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({extended: true}))
 
 // Initializing Firebase 
 fadmin.initializeApp({
-    credential: fadmin.credential.cert(serviceAccountKey)
+    credential: fadmin.credential.cert(serviceAccountKey),
+    storageBucket: "gs://university-events-manager.appspot.com"
 });
 
 // Views Routing
@@ -50,8 +51,8 @@ app.get('/report', (req, res) => {
     res.render('report')
 })
 
-app.get('/createE', (req, res) => {
-    res.render('createE')
+app.get('/createyourevent', (req, res) => {
+    res.render('createEvent')
 })
 
 

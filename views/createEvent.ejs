@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/main.css">
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer src="js/events.js"></script>
+    <script defer src="js/eventCreation.js"></script>
     <script defer src="js/Animation.js"></script>
     <title>Test</title>
 </head>
@@ -69,7 +68,7 @@
 
     <main class="hidden c2">
         <div class="containerForm" style="position:relative; top: 100px;">
-            <form id="form" action="/events/create" method="POST" autocomplete="off">
+            <form id="form" action="/events/create" method="POST" autocomplete="off" enctype="multipart/form-data">
                 <h2><strong>Create Event</strong></h2>
                 <div class="input-control">
                     <label for="eventName"><strong>Name</strong></label>
@@ -82,24 +81,29 @@
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
-                    <label for="categories"><strong>Category</strong></label>
-                    <select id="categories" name="categories">
-                        <option value="seminars">Academic Lectuer/Seminars</option>
-                        <option value="art">Art Exhibitions and Performances</option>
-                        <option value="career">Career Fairs and Networking</option>
-                        <option value="cultural">Cultural Festivals</option>
-                        <option value="food/drink">Food/Drinks</option>
-                        <option value="game">Games/Gaming</option>
-                        <option value="health">Health and Wellness Programs</option>
-                        <option value="party">Social Gatherings and Parties</option>
-                        <option value="sport">Sports</option>
-                        <option value="sClub">Student Club and Organization Meetings</option>
+                    <label for="category"><strong>Category</strong></label>
+                    <select id="category" name="category">
+                        <option>Academic Lectuer/Seminars</option>
+                        <option>Art Exhibitions and Performances</option>
+                        <option>Career Fairs and Networking</option>
+                        <option>Cultural Festivals</option>
+                        <option>Food/Drinks</option>
+                        <option>Games/Gaming</option>
+                        <option>Health and Wellness Programs</option>
+                        <option>Social Gatherings and Parties</option>
+                        <option>Sports</option>
+                        <option>Student Club and Organization Meetings</option>
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
-                    <label for="eventDate"><strong>Date</strong></label>
-                    <input id="eventDate" name="eventDate" type="date">
+                    <label for="eventstartDate"><strong>Start Date</strong></label>
+                    <input id="eventstartDate" name="eventstartDate" type="date">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventendDate"><strong>End Date</strong></label>
+                    <input id="eventendDate" name="eventendDate" type="date">
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
@@ -109,15 +113,13 @@
                     <div class="error"></div>
                 </div>
                 <div class="input-control">
-                    <label for="imageFile"><strong>Image file (Limit 10MB)</strong> </label>
+                    <label for="imageFile"><strong>Image File (Limit 10MB)</strong> </label>
                     <input id="imageFile" name="imageFile" type="file">
                     <div class="error"></div>
                 </div>
                 <button type="submit"><strong>Create</strong></button>
-
             </form>
         </div>
-
     </main>
 
 </body>
