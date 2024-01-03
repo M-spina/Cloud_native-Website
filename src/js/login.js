@@ -1,9 +1,13 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { doc, setDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 const response = await fetch('./firebase/firebaseConfig.json');
 const firebaseConfig = await response.json();
+
+// Initialize Firebase app
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -43,7 +47,7 @@ document.getElementById('form').addEventListener('submit', async function (event
         
         if (response.ok) {
             alert(data.message);
-            window.location.href = '/login'
+            //window.location.href = '/attendance'
         } else {
             console.error(`${data.code} <> ${data.error}`);
         }
@@ -61,9 +65,6 @@ document.getElementById('googleSignOn').addEventListener('click', async function
     event.preventDefault();
 
     try {
-        // Initialize Firebase app
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
 
         // Create a GoogleAuthProvider instance
@@ -79,12 +80,35 @@ document.getElementById('googleSignOn').addEventListener('click', async function
 
         await setDoc(doc(db,"students",uid),{fullname});
 
-        //window.location.href = '/login'; 
+        var userChecked = auth.currentUser;
+
+        onAuthStateChanged(auth, (userChecked) => {
+            if (userChecked) {
+                console.log("User is signed in:", userChecked);
+                //window.location.href = '/'
+            } else {
+                console.log("User Not Signed In")
+                window.location.href = '/login'
+            }
+        });
 
     } catch (error) {
         console.error(error);
         //alert('An unexpected error occurred.');
     }
+});
+
+document.getElementById('signOut').addEventListener('click', async function (event) {
+    event.preventDefault();
+
+    signOut(auth)
+    .then(() => {
+        window.location.href = '/'
+    })
+    .catch((error) => {
+        console.error("Error signing out:", error);
+    });
+
 });
 
 const setError = (element,message) =>{
@@ -104,3 +128,4 @@ const setSuccess = element => {
     inputControl.classList.add('success');
     inputControl.classList.remove('error')
 }
+

@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const firebase = require('firebase/auth');
-const { initializeApp } = require("firebase/app");
-const firebaseConfig = require('../src/firebase/firebaseConfig.json');
+const app = require('./firebaseInit');
 
 router.post('/', async (req, res, next) => {
     
     try { 
         // Firebase Authentication
-        const app = initializeApp(firebaseConfig);
         const auth = firebase.getAuth(app);
         
         const user = {

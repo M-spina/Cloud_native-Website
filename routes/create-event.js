@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const fadmin = require('firebase-admin');
 const multer = require("multer");
-const firebase = require("firebase/app");
 const { getStorage, getDownloadURL, ref } = require("firebase/storage");
 const { initializeApp } = require("firebase/app");
 const firebaseConfig = require('../src/firebase/firebaseConfig.json');
@@ -19,12 +18,7 @@ const upload = multer({
 });
 
 router.post('/', upload.single('imageFile'), async (req, res, next) => {
-    // Get the ID token from the request header
-    //const idToken = req.headers.authorization;
-
-    // Verify the ID token and get the UID
-    //const decodedToken = await fadmin.auth().verifyIdToken(idToken);
-    //const uid = decodedToken.uid;
+    
     //console.log(event)
     try {
         // Firebase Firestore
@@ -37,7 +31,9 @@ router.post('/', upload.single('imageFile'), async (req, res, next) => {
 
         if (req.file) {
             const bucket = fadmin.storage().bucket();
-            const blob = bucket.file(req.file.originalname);
+            const currentDate = new Date().toISOString().split('T')[0];     // "YYYY-MM-DD"
+            const fileName = `${req.file.originalname}-${currentDate}-${uid}.png`;
+            const blob = bucket.file(fileName);
             const blobStream = blob.createWriteStream({ 
                 gzip: true 
             });
