@@ -7,12 +7,11 @@ router.post('/', async (req, res, next) => {
     try {
         
         const event_doc_id = req.body.event_doc_id;
-        const user_uid = req.user.uid; // Access the current user's UID
-        console.log(user_uid)
+        const uid = req.body.uid; // Access the current user's UID
         
         const db = fadmin.firestore();
-        await db.collection("students").doc(user_uid).update({
-            myEventsAttend: fadmin.firestore.FieldValue.arrayUnion(event_doc_id),
+        await db.collection("students").doc(uid).update({
+            myEvents: fadmin.firestore.FieldValue.arrayUnion(event_doc_id),
           });
 
     } catch (err) {

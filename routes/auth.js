@@ -1,4 +1,4 @@
-const firebase = require('firebase/auth');
+/*const firebase = require('firebase/auth');
 const app = require('../src/firebase/firebaseInit');
 
 const authenticateUser = (req, res, next) => {
@@ -19,3 +19,4 @@ const authenticateUser = (req, res, next) => {
 };
 
 module.exports = authenticateUser;
+*/

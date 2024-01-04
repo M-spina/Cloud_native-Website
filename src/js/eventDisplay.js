@@ -1,4 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+document.addEventListener('DOMContentLoaded', async function () {
+
+        
+    const response = await fetch('./firebase/firebaseConfig.json');
+    const firebaseConfig = await response.json();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    
     fetch('/events/show/all') 
         .then(response => {
             if (!response.ok) {
@@ -28,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <td>${event.data.location}</td>
                         <td>${event.data.startdate}</td>
                         <td>${event.data.enddate}</td>
-                        <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 500px;"></td>                              
+                        <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
                         <td><button class="attend-button" data-event-doc-id="${event.id}">Attend</button></td>                              
                     </tr>`;
         });
@@ -39,17 +49,21 @@ document.addEventListener('DOMContentLoaded', function () {
         // Attach a click event listener to the "Attend" buttons
         document.querySelectorAll('.attend-button').forEach(button => {
         button.addEventListener('click', function () {
+
             const event_doc_id = this.dataset.eventDocId;
-
-            console.log('Button clicked. Data attribute:', this.dataset);
-
+            const userChecked = auth.currentUser;
+            const uid = userChecked.uid;
+            
             // Make an AJAX request to the server to record attendance
             fetch('/events/attend', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ event_doc_id }),
+                body: JSON.stringify({ 
+                    event_doc_id,
+                    uid,
+                }),
             })
                 .then(response => {
                     if (!response.ok) {

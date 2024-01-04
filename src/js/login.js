@@ -1,13 +1,6 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { signInWithEmailAndPassword, getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { doc, setDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
-const response = await fetch('./firebase/firebaseConfig.json');
-const firebaseConfig = await response.json();
-
-// Initialize Firebase app
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { app, auth } from '../firebase/firebaseInit.js';
 
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -99,7 +92,7 @@ document.getElementById('signOut').addEventListener('click', async function (eve
 document.getElementById('test11').addEventListener('click', async function (event) {
     event.preventDefault();
 
-    var userChecked = auth.currentUser;
+    const userChecked = auth.currentUser;
     console.log("TEST: ", userChecked);
 
 });
