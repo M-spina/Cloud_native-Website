@@ -71,9 +71,6 @@ app.use('/events', eventAPI)
 const registerAPI = require('./routes/register-submit')
 app.use('/register/submit', registerAPI)
 
-const loginAPI = require('./routes/login-submit')
-app.use('/login/submit', loginAPI)
-
 const createEventAPI = require('./routes/create-event')
 app.use('/events/create', createEventAPI)
 
