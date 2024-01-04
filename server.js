@@ -7,6 +7,7 @@ const authenticateUser = require('./routes/auth');
 
 // Serve static files from the "src" directory
 app.use(express.static('src'));
+
 // Set EJS as the view engine
 app.set('view engine', 'ejs')
 
@@ -62,7 +63,6 @@ app.get('/report', (req, res) => {
 app.get('/createyourevent', (req, res) => {
     res.render('createEvent')
 })
-
 
 // APIs Routing
 const eventAPI = require('./routes/show-events')

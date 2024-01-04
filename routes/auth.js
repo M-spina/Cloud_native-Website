@@ -3,8 +3,9 @@ const app = require('../src/firebase/firebaseInit');
 
 const authenticateUser = (req, res, next) => {
     const auth = firebase.getAuth(app);
-    var user = auth.currentUser;
-
+    const user = auth.currentUser;
+    
+    console.log(req.body.auth)
     // Listen for authentication state changes
     if (user) {
         req.user = user; // You can store the user object in the request for later use
