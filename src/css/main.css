@@ -13871,3 +13871,9 @@ span.asad {
 .sign-out-btn:active {
   background-color: #6e2424;
 }
+
+.attend-button[disabled] {
+  background-color: #ccc; /* Gray background */
+  color: #666; /* Gray text color */
+  cursor: not-allowed; /* Change cursor to indicate not clickable */
+}

@@ -9,10 +9,11 @@ router.post('/', async (req, res, next) => {
         const event_doc_id = req.body.event_doc_id;
         const uid = req.body.uid; // Access the current user's UID
         
-        const db = fadmin.firestore();
+        const db = fadmin.firestore();  
+
         await db.collection("students").doc(uid).update({
-            myEvents: fadmin.firestore.FieldValue.arrayUnion(event_doc_id),
-          });
+            myEvents: fadmin.firestore.FieldValue.arrayRemove(event_doc_id),
+        });
 
         res.status(200).json({ 
             success: true 

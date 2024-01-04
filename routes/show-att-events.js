@@ -3,23 +3,37 @@ const router = express.Router();
 const fadmin = require('firebase-admin');
 const db = fadmin.firestore();
 
-router.get('/all', async (req, res, next) => {
+router.get('/all/:id', async (req, res, next) => {
     
     try {
+        const studRef = db.collection('students').doc(req.params.id);
+        const studDoc = await studRef.get();
+        
+        const myEvents = studDoc.data().myEvents;
+
+        if (!myEvents || myEvents.length === 0) {
+            // Handle case where myEvents is empty
+            res.status(201).json({ 
+                message: 'No events found' 
+            });
+            return;
+        }
 
         const eventsRef = db.collection('events');
-        const response = await eventsRef.get();
-        let responseArr = [];
+        const query = eventsRef.where(fadmin.firestore.FieldPath.documentId(), 'in', myEvents);   
 
-        response.forEach(doc => {
-            responseArr.push({
+        const response = await query.get();
+        const eventsArr = [];
+
+        response.forEach(doc=> {
+            eventsArr.push({
                 id: doc.id,
                 data: doc.data(),
-            });   
-            
+            });
         });
 
-        res.send(responseArr);
+        res.send(eventsArr);
+        
     } catch (err) {
         // Handle error
         console.error(err);
