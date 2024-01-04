@@ -32,7 +32,7 @@ router.post('/', upload.single('imageFile'), async (req, res, next) => {
         if (req.file) {
             const bucket = fadmin.storage().bucket();
             const currentDate = new Date().toISOString().split('T')[0];     // "YYYY-MM-DD"
-            const fileName = `${req.file.originalname}-${currentDate}-${uid}.png`;
+            const fileName = `${req.file.originalname}-${currentDate}-${123}.png`;      //// to add uid in 123
             const blob = bucket.file(fileName);
             const blobStream = blob.createWriteStream({ 
                 gzip: true 

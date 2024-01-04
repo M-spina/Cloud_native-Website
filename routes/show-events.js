@@ -1,39 +1,54 @@
 const express = require('express');
 const router = express.Router();
+const fadmin = require('firebase-admin');
+const db = fadmin.firestore();
 
-router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET requests to /events'
-    });
-});
+router.get('/all', async (req, res, next) => {
+    
+    try {
 
-router.post('/', (req, res, next) => {
-    const event = {
-        name: req.body.name,
-        location: req.body.location,
-        date: req.body.date,
-        description: req.body.description,
-        imgURL: req.body.imgURL,
-    }
-    res.status(200).json({
-        message: 'Handling POST requests to /events',
-        createdEvent: event
-    });
-});
+        const eventsRef = db.collection('events');
+        const response = await eventsRef.get();
+        let responseArr = [];
 
-router.get('/:eventId', (req, res, next) => {
-    const id = req.params.eventId;
-    if (id === 'special'){
-        res.status(200).json({
-            message: 'the SPECIAL Id',
-            id: id
+        response.forEach(doc => {
+            responseArr.push({
+                id: doc.id,
+                data: doc.data(),
+            });   
+            
+        });
+
+        res.send(responseArr);
+    } catch (err) {
+        // Handle error
+        console.error(err);
+        res.status(500).json({
+            code: err.code,
+            error: err.message
         });
     }
-    else {
-        res.status(200).json({
-            message: 'you passed an Id'
+
+});
+
+router.get('/:id', async (req, res, next) => {
+    
+    try {
+
+        const eventRef = db.collection('events').doc(req.params.id);
+        const response = await eventRef.get();
+
+        res.send(response.data());
+
+    } catch (err) {
+        // Handle error
+        console.error(err);
+        res.status(500).json({
+            code: err.code,
+            error: err.message
         });
     }
+
 });
 
 router.patch('/:eventId', (req, res, next) => {

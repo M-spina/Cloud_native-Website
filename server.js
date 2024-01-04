@@ -21,7 +21,7 @@ fadmin.initializeApp({
 });
 
 // Use the middleware for routes that should be protected
-app.use('/attendance', authenticateUser);
+//app.use('/attendance', authenticateUser);
 
 // Views Routing
 app.get('/', (req, res) => {
@@ -65,14 +65,17 @@ app.get('/createyourevent', (req, res) => {
 })
 
 // APIs Routing
-const eventAPI = require('./routes/show-events')
-app.use('/events', eventAPI)
-
 const registerAPI = require('./routes/register-submit')
 app.use('/register/submit', registerAPI)
 
 const createEventAPI = require('./routes/create-event')
 app.use('/events/create', createEventAPI)
+
+const showEventAPI = require('./routes/show-events')
+app.use('/events/show', showEventAPI)
+
+const attendEventAPI = require('./routes/attend-event')
+app.use('/events/attend', attendEventAPI)
 
 // Error Handling if path not found
 app.use((req, res, next) => {
