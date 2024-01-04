@@ -77,6 +77,9 @@ app.use('/events/show', showEventAPI)
 const attendEventAPI = require('./routes/attend-event')
 app.use('/events/attend', attendEventAPI)
 
+const showAttEventAPI = require('./routes/show-att-events')
+app.use('/att-events/show/', showAttEventAPI)
+
 // Error Handling if path not found
 app.use((req, res, next) => {
     const error = new Error('Not found');
