@@ -3,7 +3,6 @@ const app = express()
 const PORT = 8080;
 const fadmin = require('firebase-admin');
 const serviceAccountKey = require('./src/firebase/serviceAccountKey.json');
-const authenticateUser = require('./routes/auth');
 
 // Serve static files from the "src" directory
 app.use(express.static('src'));
@@ -19,9 +18,6 @@ fadmin.initializeApp({
     credential: fadmin.credential.cert(serviceAccountKey),
     storageBucket: "gs://university-events-manager.appspot.com"
 });
-
-// Use the middleware for routes that should be protected
-//app.use('/attendance', authenticateUser);
 
 // Views Routing
 app.get('/', (req, res) => {

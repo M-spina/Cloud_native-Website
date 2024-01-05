@@ -49,27 +49,29 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Function to update the table in events.ejs
     function updateTable(data) {
         
-        const tableRows = data.map((event, index) => {
+        if(data){
+            const tableRows = data.map((event, index) => {
 
-            return `<tr>
-                        <th scope="row">${index + 1}</th>
-                        <td>${event.data.name}</td>
-                        <td>${event.data.description}</td>
-                        <td>${event.data.category}</td>   
-                        <td>${event.data.location}</td>
-                        <td>${event.data.startdate}</td>
-                        <td>${event.data.enddate}</td>
-                        <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
-                        <td>
-                            <button class="attend-button" data-event-doc-id="${event.id}" ${event.disable ? 'disabled' : ''}>
-                                ${event.disable ? 'Attended' : 'Attend'}
-                            </button>
-                        </td>                              
-                    </tr>`;
-        });
-
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = tableRows.join('');
+                return `<tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${event.data.name}</td>
+                            <td>${event.data.description}</td>
+                            <td>${event.data.category}</td>   
+                            <td>${event.data.location}</td>
+                            <td>${event.data.startdate}</td>
+                            <td>${event.data.enddate}</td>
+                            <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
+                            <td>
+                                <button class="attend-button" data-event-doc-id="${event.id}" ${event.disable ? 'disabled' : ''}>
+                                    ${event.disable ? 'Attended' : 'Attend'}
+                                </button>
+                            </td>                              
+                        </tr>`;
+            });
+        
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = tableRows.join('');
+        }
 
         // Attach a click event listener to the "Attend" button
         document.querySelectorAll('.attend-button').forEach(button => {
@@ -115,22 +117,24 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function updateTableExt(data) {
         
-        const tableRows = data.map((event, index) => {
+        if(data){
+            const tableRows = data.map((event, index) => {
 
-            return `<tr>
-                        <th scope="row">${index + 1}</th>
-                        <td>${event.data.name}</td>
-                        <td>${event.data.description}</td>
-                        <td>${event.data.category}</td>   
-                        <td>${event.data.location}</td>
-                        <td>${event.data.startdate}</td>
-                        <td>${event.data.enddate}</td>
-                        <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
-                        <td><button class="attend-button" data-event-doc-id="${event.id}" disabled >Attend</button></td>                              
-                    </tr>`;
-        });
+                return `<tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${event.data.name}</td>
+                            <td>${event.data.description}</td>
+                            <td>${event.data.category}</td>   
+                            <td>${event.data.location}</td>
+                            <td>${event.data.startdate}</td>
+                            <td>${event.data.enddate}</td>
+                            <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
+                            <td><button class="attend-button" data-event-doc-id="${event.id}" disabled >Attend</button></td>                              
+                        </tr>`;
+            });
 
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = tableRows.join('');
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = tableRows.join('');
+        }
     }
 });

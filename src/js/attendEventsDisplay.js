@@ -34,24 +34,26 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Function to update the table in events.ejs
     function updateTable(data) {
-        
-        const tableRows = data.map((event, index) => {
 
-            return `<tr>
-                        <th scope="row">${index + 1}</th>
-                        <td>${event.data.name}</td>
-                        <td>${event.data.description}</td>
-                        <td>${event.data.category}</td>   
-                        <td>${event.data.location}</td>
-                        <td>${event.data.startdate}</td>
-                        <td>${event.data.enddate}</td>
-                        <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
-                        <td><button class="remove-button" data-event-doc-id="${event.id}">Remove</button></td>                              
-                    </tr>`;
-        });
+        if(data.message != "No events found"){
+            const tableRows = data.map((event, index) => {
 
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = tableRows.join('');
+                return `<tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${event.data.name}</td>
+                            <td>${event.data.description}</td>
+                            <td>${event.data.category}</td>   
+                            <td>${event.data.location}</td>
+                            <td>${event.data.startdate}</td>
+                            <td>${event.data.enddate}</td>
+                            <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
+                            <td><button class="remove-button" data-event-doc-id="${event.id}">Unattend</button></td>                              
+                        </tr>`;
+            });
+
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = tableRows.join('');
+        }
 
         // Attach a click event listener to the "Remove" button
         document.querySelectorAll('.remove-button').forEach(button => {

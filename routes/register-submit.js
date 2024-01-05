@@ -10,11 +10,6 @@ router.post('/', async (req, res, next) => {
             password: req.body.password
         }
         const fullname = req.body.fname + ' ' + req.body.lname;
-        const myEventsAttended = ""
-
-        const studentData = {
-            fullname,
-        }
 
         // Firebase Authentication
         const userResponse = await fadmin.auth().createUser({
@@ -32,7 +27,7 @@ router.post('/', async (req, res, next) => {
             // Firebase Firestore
             const uid = userResponse.uid;
             const db = fadmin.firestore();
-            await db.collection("students").doc(uid).set({studentData});
+            await db.collection("students").doc(uid).set({fullname});
         }
 
     } catch (err) {

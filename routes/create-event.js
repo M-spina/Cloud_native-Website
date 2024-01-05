@@ -19,7 +19,6 @@ const upload = multer({
 
 router.post('/', upload.single('imageFile'), async (req, res, next) => {
     
-    //console.log(event)
     try {
         // Firebase Firestore
         const db = fadmin.firestore();
@@ -31,8 +30,9 @@ router.post('/', upload.single('imageFile'), async (req, res, next) => {
 
         if (req.file) {
             const bucket = fadmin.storage().bucket();
+            const uid = req.body.uid;
             const currentDate = new Date().toISOString().split('T')[0];     // "YYYY-MM-DD"
-            const fileName = `${req.file.originalname}-${currentDate}-${123}.png`;      //// to add uid in 123
+            const fileName = `${req.file.originalname}-${uid}-${currentDate}.png`;      
             const blob = bucket.file(fileName);
             const blobStream = blob.createWriteStream({ 
                 gzip: true 
