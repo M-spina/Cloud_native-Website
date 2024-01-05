@@ -28,8 +28,7 @@ document.getElementById('form').addEventListener('submit', async function (event
             if (data.code === 'auth/email-already-exists') {
                 setError(email, 'The email address is already in use by another account');
             }else if (response.ok) {
-                alert(data.message);
-                window.location.href = '/register'
+                window.location.href = '/login'
             } else {
                 console.error(`${data.code} <> ${data.error}`);
             }

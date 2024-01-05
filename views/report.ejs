@@ -6,17 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/main.css">
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="js/login.js"></script>
     <script defer src="js/Animation.js"></script>
-    <title>Test</title>
+    <script defer type="module" src="js/statistics.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+    <title>University Events Manager</title>
 </head>
 
 <body>
 
     <header>
         <a class="nav__links_home" href="/">
-            <h1 class="ani">Uni Auto</h1>
+            <h1 class="ani">University Events Manager</h1>
+
         </a>
         <nav>
             <ul class="nav__links">
@@ -43,16 +47,14 @@
                 <li><a class="menu__item " href="/contacts"><button class="ext_btn">Contact</button></a></li>
             </ul>
         </div>
-
     </header>
-
 
     <div class="container fadein">
         <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 100px;">
-                <h2 class="text-center">Welcome to the Your Events statistics</h2>
+            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 35px;">
+                <h2 class="text-center">Welcome to the University Events Statistics</h2>
             </div>
-            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 100px;">
+            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 60px;">
                 <div class="card text-center h-100" style="background-color: #32333a">
                     <div class="card-body">
                         <p class="card-text">
@@ -69,8 +71,17 @@
     </div>
 
     <main>
+        <div class="center-container">
+            <div class="chart-container">
+            <canvas id="totalUsersChart"></canvas>
+            </div>
+        </div>
 
-
+        <div class="center-container">
+            <div class="chart-container">
+            <canvas id="categoryEventsChart"></canvas>
+            </div>
+        </div>
     </main>
 
 </body>

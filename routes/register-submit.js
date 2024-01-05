@@ -27,7 +27,16 @@ router.post('/', async (req, res, next) => {
             // Firebase Firestore
             const uid = userResponse.uid;
             const db = fadmin.firestore();
-            await db.collection("students").doc(uid).set({fullname});
+
+            // Get the current date and time
+        const currentDate = new Date();
+        const dateString = currentDate.toISOString();
+        const yearMonthDate = dateString.substring(0, 10);
+
+            await db.collection("students").doc(uid).set({
+                fullname,
+                registrationDate: yearMonthDate,
+            });
         }
 
     } catch (err) {

@@ -56,8 +56,12 @@ app.get('/report', (req, res) => {
     res.render('report')
 })
 
-app.get('/createyourevent', (req, res) => {
+app.get('/eventcreation', (req, res) => {
     res.render('createEvent')
+})
+
+app.get('/statistics', (req, res) => {
+    res.render('statistics')
 })
 
 // APIs Routing
@@ -74,10 +78,13 @@ const attendEventAPI = require('./routes/attend-event')
 app.use('/events/attend', attendEventAPI)
 
 const showAttEventAPI = require('./routes/show-att-events')
-app.use('/att-events/show/', showAttEventAPI)
+app.use('/att-events/show', showAttEventAPI)
 
 const removeEventAPI = require('./routes/remove-event')
 app.use('/events/remove', removeEventAPI)
+
+const statisticsAPI = require('./routes/show-statistics')
+app.use('/statistics/show', statisticsAPI)
 
 // Error Handling if path not found
 app.use((req, res, next) => {

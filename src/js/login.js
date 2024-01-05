@@ -17,19 +17,22 @@ document.getElementById('form').addEventListener('submit', async function (event
         const userCredential = await signInWithEmailAndPassword(auth, emailValue, passwordValue);
         const user = userCredential.user;
 
-        // You can now handle the signed-in user (e.g., redirect to another page)
-        console.log('Signed in as:', user.email);
+        onAuthStateChanged(auth, (userChecked) => {
+            if (userChecked) {
+                window.location.href = '/events'
+            } else {
+                window.location.href = '/login'
+            }
+        });
         
     } catch (error) {
-        //console.error(error);
-        
-        if (emailValue === '' || error === 'auth/invalid-email') {
+        if (emailValue === '' || error.code === 'auth/invalid-email') {
             setError(email, 'Invalid Email');
         }else{
             setSuccess(email);
         }
 
-        if (passwordValue === '' || error === 'auth/missing-password' || error === 'auth/invalid-credential') {
+        if (passwordValue === '' || error.code === 'auth/missing-password' || error.code === 'auth/invalid-credential') {
             setError(password, 'Invalid Password');
         }else{
             setSuccess(password);
@@ -57,22 +60,25 @@ document.getElementById('googleSignIn').addEventListener('click', async function
         const user = result.user;
         const uid = user.uid;
         const fullname = user.displayName;
+        const currentDate = new Date();
+        const dateString = currentDate.toISOString();
+        const yearMonthDate = dateString.substring(0, 10);
 
-        await setDoc(doc(db,"students",uid),{fullname});
+        await setDoc(doc(db,"students",uid),{
+            fullname,
+            registrationDate: yearMonthDate,
+        });
 
         onAuthStateChanged(auth, (userChecked) => {
             if (userChecked) {
-                console.log("User is signed in:", userChecked);
-                //window.location.href = '/'
+                window.location.href = '/events'
             } else {
-                console.log("User Not Signed In")
                 window.location.href = '/login'
             }
         });
 
     } catch (error) {
         console.error(error);
-        //alert('An unexpected error occurred.');
     }
 });
 
@@ -88,7 +94,7 @@ document.getElementById('signOut').addEventListener('click', async function (eve
     });
 
 });
-
+/*
 document.getElementById('test11').addEventListener('click', async function (event) {
     event.preventDefault();
 
@@ -96,7 +102,7 @@ document.getElementById('test11').addEventListener('click', async function (even
     console.log("TEST: ", userChecked);
 
 });
-
+*/
 const setError = (element,message) =>{
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');

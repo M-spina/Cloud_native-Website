@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="/css/main.css">
     <script type="module" defer src="js/eventCreation.js"></script>
     <script defer src="js/Animation.js"></script>
-    <title>Test</title>
+    <title>University Events Manager</title>
 </head>
 
 <body>
 
     <header>
         <a class="nav__links_home" href="/">
-            <h1 class="ani">Uni Auto</h1>
+            <h1 class="ani">University Events Manager</h1>
+
         </a>
         <nav>
             <ul class="nav__links">
@@ -47,10 +48,10 @@
 
     <div class="container hidden">
         <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 100px;">
+            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 35px;">
                 <h2 class="text-center">Welcome Create Your Event</h2>
             </div>
-            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 100px;">
+            <div class="col-sm-12 col-md-12 col-xlg-12" style="position:relative; top: 60px;">
                 <div class="card text-center h-100" style="background-color: #32333a">
                     <div class="card-body">
                         <p class="card-text">
@@ -67,7 +68,7 @@
 
 
     <main class="hidden c2">
-        <div class="containerForm" style="position:relative; top: 100px;">
+        <div class="containerForm" style="position:relative; top: 100px; padding-bottom: 50px;">
             <form id="form" action="/events/create" method="POST" autocomplete="off" enctype="multipart/form-data">
                 <h2><strong>Create Event</strong></h2>
                 <div class="input-control">
@@ -83,7 +84,7 @@
                 <div class="input-control">
                     <label for="category"><strong>Category</strong></label>
                     <select id="category" name="category">
-                        <option>Academic Lectuer/Seminars</option>
+                        <option>Academic Lectures/Seminars</option>
                         <option>Art Exhibitions and Performances</option>
                         <option>Career Fairs and Networking</option>
                         <option>Cultural Festivals</option>

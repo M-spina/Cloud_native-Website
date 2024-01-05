@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.error('Error retrieving data: ', error);
             });
         } else {
-            console.log("No user is currently signed in");
+            window.location.href = '/'
         }
     });
 

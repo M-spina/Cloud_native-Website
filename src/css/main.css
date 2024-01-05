@@ -13877,3 +13877,15 @@ span.asad {
   color: #666; /* Gray text color */
   cursor: not-allowed; /* Change cursor to indicate not clickable */
 }
+
+.center-container {
+  margin: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
