@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.error('Error retrieving data: ', error);
             });
         } else {
-            await fetch(`/events/show/all/ext`) 
+            await fetch(`/events/show/ext`) 
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response failed');

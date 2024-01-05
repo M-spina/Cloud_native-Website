@@ -18,7 +18,14 @@ router.get('/all/:id', async (req, res, next) => {
 
         response.forEach(doc => {
 
-            if (myEvents.includes(doc.id)){
+            if (!myEvents || myEvents.length === 0) {
+                responseArr.push({
+                    id: doc.id,
+                    data: doc.data(),
+                    disable: false
+                }); 
+            }
+            else if (myEvents.includes(doc.id)){
                 responseArr.push({
                     id: doc.id,
                     data: doc.data(),
@@ -46,7 +53,7 @@ router.get('/all/:id', async (req, res, next) => {
 
 });
 
-router.get('/all/ext', async (req, res, next) => {
+router.get('/ext', async (req, res, next) => {
     
     try {
 

@@ -12,27 +12,26 @@ router.get('/all/:id', async (req, res, next) => {
         const myEvents = studDoc.data().myEvents;
 
         if (!myEvents || myEvents.length === 0) {
-            // Handle case where myEvents is empty
             res.status(201).json({ 
                 message: 'No events found' 
             });
             return;
-        }
+        } else {
+            const eventsRef = db.collection('events');
+            const query = eventsRef.where(fadmin.firestore.FieldPath.documentId(), 'in', myEvents);   
 
-        const eventsRef = db.collection('events');
-        const query = eventsRef.where(fadmin.firestore.FieldPath.documentId(), 'in', myEvents);   
+            const response = await query.get();
+            const eventsArr = [];
 
-        const response = await query.get();
-        const eventsArr = [];
-
-        response.forEach(doc=> {
-            eventsArr.push({
-                id: doc.id,
-                data: doc.data(),
+            response.forEach(doc=> {
+                eventsArr.push({
+                    id: doc.id,
+                    data: doc.data(),
+                });
             });
-        });
 
-        res.send(eventsArr);
+            res.send(eventsArr);
+        }
         
     } catch (err) {
         // Handle error
