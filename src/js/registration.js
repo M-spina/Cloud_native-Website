@@ -59,7 +59,7 @@ document.getElementById('form').addEventListener('submit', async function (event
         
     } catch (error) {
         console.error(error);
-        alert('An unexpected error occurred.');
+        window.location.href = '/register'
     } finally {
         // Enable submit button after fetch completes
         submitButton.disabled = false;

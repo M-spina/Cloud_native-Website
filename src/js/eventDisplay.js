@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.location}</td>
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
-                            <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 750px;"></td>                              
+                            <td><img src="${event.data.imageFile}" style="max-width: 450px; max-height: 700px;"></td>                              
                             <td>
                                 <button class="attend-button" data-event-doc-id="${event.id}" ${event.disable ? 'disabled' : ''}>
                                     ${event.disable ? 'Attended' : 'Attend'}
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.location}</td>
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
-                            <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 750px;"></td>                              
+                            <td><img src="${event.data.imageFile}" style="max-width: 450px; max-height: 700px;"></td>                              
                             <td><button class="attend-button" data-event-doc-id="${event.id}" disabled >Attend</button></td>                              
                         </tr>`;
             });

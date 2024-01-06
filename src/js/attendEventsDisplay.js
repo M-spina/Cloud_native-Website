@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             loggedIn();
 
             const uid = userChecked.uid;
-        
+            
+            // Attended Events
             await fetch(`/att-events/show/all/${uid}`) 
             .then(response => {
                 if (!response.ok) {
@@ -22,9 +23,22 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return response.json();
             })
             .then(data => {
-                // Assuming data is an array of event objects
-                // Update the table in events.ejs with the retrieved data
-                updateTable(data);
+                updateAttendedTable(data);
+            })
+            .catch(error => {
+                console.error('Error retrieving data: ', error);
+            });
+
+            // Created Events
+            await fetch(`/att-events/show/all/created/${uid}`) 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                updatecreatedTable(data);
             })
             .catch(error => {
                 console.error('Error retrieving data: ', error);
@@ -34,10 +48,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
-    // Function to update the table in events.ejs
-    function updateTable(data) {
+    function updateAttendedTable(data) {
 
-        if(data.message != "No events found"){
+        if(data.message != "No event found"){
             const tableRows = data.map((event, index) => {
 
                 return `<tr>
@@ -48,17 +61,17 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.location}</td>
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
-                            <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 750px;"></td>                              
-                            <td><button class="remove-button" data-event-doc-id="${event.id}">Unattend</button></td>                              
+                            <td><img src="${event.data.imageFile}" style="max-width: 450px; max-height: 700px;"></td>                              
+                            <td><button class="attended-button" data-event-doc-id="${event.id}">Unattend</button></td>                              
                         </tr>`;
             });
 
-            const tbody = document.querySelector('tbody');
+            const tbody = document.querySelector('.attended');
             tbody.innerHTML = tableRows.join('');
         }
 
         // Attach a click event listener to the "Remove" button
-        document.querySelectorAll('.remove-button').forEach(button => {
+        document.querySelectorAll('.attended-button').forEach(button => {
             button.addEventListener('click', async function () {
 
                 const event_doc_id = this.dataset.eventDocId;
@@ -92,8 +105,67 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
             });
         });
-
     }
+
+    function updatecreatedTable(data) {
+
+        if(data.message != "No event found"){
+            const tableRows = data.map((event, index) => {
+
+                return `<tr>
+                            <th scope="row">${index + 1}</th>
+                            <td>${event.data.name}</td>
+                            <td>${event.data.description}</td>
+                            <td>${event.data.category}</td>   
+                            <td>${event.data.location}</td>
+                            <td>${event.data.startdate}</td>
+                            <td>${event.data.enddate}</td>
+                            <td><img src="${event.data.imageFile}" style="max-width: 450px; max-height: 700px;"></td>                              
+                            <td><button class="attended-button" data-event-doc-id="${event.id}">Unattend</button></td>                              
+                        </tr>`;
+            });
+
+            const tbody = document.querySelector('.created');
+            tbody.innerHTML = tableRows.join('');
+        }
+
+        // Attach a click event listener to the "Remove" button
+        document.querySelectorAll('.attended-button').forEach(button => {
+            button.addEventListener('click', async function () {
+
+                const event_doc_id = this.dataset.eventDocId;
+                const userChecked = auth.currentUser;
+                const uid = userChecked.uid;
+                
+                // Make an AJAX request to the server to record attendance
+                await fetch('/events/unattend', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        event_doc_id,
+                        uid,
+                    }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error recording attendance:', error);
+                });
+            });
+        });
+    }
+
 });
 
 function toggleVisibility(selector) {

@@ -13,7 +13,7 @@ router.get('/all/:id', async (req, res, next) => {
 
         if (!myEvents || myEvents.length === 0) {
             res.status(201).json({ 
-                message: 'No events found' 
+                message: 'No event found' 
             });
             return;
         } else {
@@ -43,6 +43,43 @@ router.get('/all/:id', async (req, res, next) => {
     }
 
 });
+
+router.get('/all/created/:id', async (req, res, next) => {
+    
+    try {
+        const uid = req.params.id;
+
+        ////
+        const eventsRef = db.collection('events');
+        const eventsRes = await eventsRef.get();
+        const responseArr = [];
+
+        eventsRes.forEach((doc)=> {
+            const createdBy = doc.data().createdBy;
+            if (createdBy === uid) {
+                responseArr.push({
+                    id: doc.id,
+                    data: doc.data(),
+                });  
+            } 
+        });
+
+        res.send(responseArr);
+
+    } catch (err) {
+        // Handle error
+        console.error(err);
+        res.status(500).json({
+            code: err.code,
+            error: err.message
+        });
+    }
+
+});
+
+
+
+///////
 
 router.get('/:id', async (req, res, next) => {
     

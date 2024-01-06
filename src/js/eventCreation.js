@@ -45,7 +45,6 @@ document.getElementById('form').addEventListener('submit', async function (event
         if (response.ok) {
             window.location.href = '/events'
         } else {
-            //alert(`${data.code} /// ${data.error}`);
             window.location.href = '/eventcreation'
         }
     } catch (error) {
