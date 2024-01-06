@@ -17,7 +17,6 @@ function loggingOut(){
         .catch((error) => {
             console.error("Error signing out:", error);
         });
-    
     });
 }
 

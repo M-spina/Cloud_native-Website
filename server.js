@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const fadmin = require('firebase-admin');
 const serviceAccountKey = require('./src/firebase/serviceAccountKey.json');
 
@@ -76,8 +76,8 @@ app.use('/events/attend', attendEventAPI)
 const showAttEventAPI = require('./routes/show-att-events')
 app.use('/att-events/show', showAttEventAPI)
 
-const removeEventAPI = require('./routes/remove-event')
-app.use('/events/remove', removeEventAPI)
+const removeEventAPI = require('./routes/unattend-event')
+app.use('/events/unattend', removeEventAPI)
 
 const statisticsAPI = require('./routes/show-statistics')
 app.use('/statistics/show', statisticsAPI)

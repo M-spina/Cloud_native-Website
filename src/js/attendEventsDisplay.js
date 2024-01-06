@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const uid = userChecked.uid;
                 
                 // Make an AJAX request to the server to record attendance
-                await fetch('/events/remove', {
+                await fetch('/events/unattend', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
