@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <script defer src="js/Animation.js"></script>
     <script defer type="module" src="js/eventDisplay.js"></script>
+    <script defer type="module" src="js/logOut.js"></script>
     <title>University Events Manager</title>
 </head>
 
@@ -20,14 +21,13 @@
         </a>
         <nav>
             <ul class="nav__links">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/events">Events</a></li>
-                <li><a href="/attendance">Attendance</a></li>
-                <li><a href="/report">Report</a></li>
-
+                <li style="display: none;"><a href="/login">Login</a></li>
+                <li style="display: none;"><a href="/events">Events</a></li>
+                <li style="display: none;"><a href="/attendance">Attendance</a></li>
+                <li style="display: none;"><a href="/report">Report</a></li>
             </ul>
         </nav>
-        <a class="cta" href="/contacts"><button>Contact</button></a>
+        <a class="cta" id="logOut" style="display: none;"><button>Log out</button></a>
 
         <div class="hamburger-menu" style="background-color: transparent; width: 50px;">
             <input id="menu__toggle" type="checkbox" />
@@ -36,11 +36,13 @@
             </label>
 
             <ul class="menu__box" style="height: 400px;">
-                <li><a class="menu__item" href="/login">Login</a></li>
-                <li><a class="menu__item" href="/events">Events</a></li>
-                <li><a class="menu__item" href="/attendance">Attendance</a></li>
-                <li><a class="menu__item" href="/report">Report</a></li>
-                <li><a class="menu__item " href="/contacts"><button class="ext_btn">Contact</button></a></li>
+                <li style="display: none;"><a class="menu__item" href="/login">Login</a></li>
+                <li style="display: none;"><a class="menu__item" href="/events">Events</a></li>
+                <li style="display: none;"><a class="menu__item" href="/attendance">Attendance</a></li>
+                <li style="display: none;"><a class="menu__item" href="/report">Report</a></li>
+                <li><a class="menu__item" id="logOut" style="display: none;"><button class="ext_btn">Log out</button></a></li>
+
+
             </ul>
         </div>
     </header>

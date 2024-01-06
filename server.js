@@ -36,10 +36,6 @@ app.get('/attendance', (req, res) => {
     res.render('attendance')
 })
 
-app.get('/contacts', (req, res) => {
-    res.render('contacts')
-})
-
 app.get('/events', (req, res) => {
     res.render('events')
 })

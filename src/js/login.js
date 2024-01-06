@@ -82,27 +82,6 @@ document.getElementById('googleSignIn').addEventListener('click', async function
     }
 });
 
-document.getElementById('signOut').addEventListener('click', async function (event) {
-    event.preventDefault();
-
-    signOut(auth)
-    .then(() => {
-        window.location.href = '/'
-    })
-    .catch((error) => {
-        console.error("Error signing out:", error);
-    });
-
-});
-/*
-document.getElementById('test11').addEventListener('click', async function (event) {
-    event.preventDefault();
-
-    const userChecked = auth.currentUser;
-    console.log("TEST: ", userChecked);
-
-});
-*/
 const setError = (element,message) =>{
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
@@ -120,4 +99,7 @@ const setSuccess = element => {
     inputControl.classList.add('success');
     inputControl.classList.remove('error')
 }
+
+
+
 

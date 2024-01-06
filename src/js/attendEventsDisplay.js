@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     auth.onAuthStateChanged(async (userChecked) => {
         if (userChecked) {
+            loggedIn();
+
             const uid = userChecked.uid;
         
             await fetch(`/att-events/show/all/${uid}`) 
@@ -93,3 +95,22 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     }
 });
+
+function toggleVisibility(selector) {
+    var links = document.querySelectorAll(selector);
+
+    links.forEach(function (link) {
+        var liElement = link.parentElement;
+        liElement.style.display = (liElement.style.display === 'none') ? '' : 'none';
+    });
+}
+
+function loggedIn() {
+    toggleVisibility('li > a[href="/events"], li > a.menu__item[href="/events"]');
+    toggleVisibility('li > a[href="/attendance"], li > a.menu__item[href="/attendance"]');
+    toggleVisibility('li > a[href="/report"], li > a.menu__item[href="/report"]');
+    toggleVisibility('.cta#logOut button');
+
+
+    toggleVisibility('li > a#logOut.menu__item');
+}
