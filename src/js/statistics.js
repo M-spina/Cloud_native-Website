@@ -132,8 +132,6 @@ function loggedIn() {
     toggleVisibility('li > a[href="/attendance"], li > a.menu__item[href="/attendance"]');
     toggleVisibility('li > a[href="/report"], li > a.menu__item[href="/report"]');
     toggleVisibility('.cta#logOut button');
-
-
     toggleVisibility('li > a#logOut.menu__item');
 }
 

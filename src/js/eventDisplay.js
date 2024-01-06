@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.location}</td>
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
-                            <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
+                            <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 750px;"></td>                              
                             <td>
                                 <button class="attend-button" data-event-doc-id="${event.id}" ${event.disable ? 'disabled' : ''}>
                                     ${event.disable ? 'Attended' : 'Attend'}
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.location}</td>
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
-                            <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
+                            <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 750px;"></td>                              
                             <td><button class="attend-button" data-event-doc-id="${event.id}" disabled >Attend</button></td>                              
                         </tr>`;
             });
@@ -156,8 +156,6 @@ function loggedIn() {
     toggleVisibility('li > a[href="/attendance"], li > a.menu__item[href="/attendance"]');
     toggleVisibility('li > a[href="/report"], li > a.menu__item[href="/report"]');
     toggleVisibility('.cta#logOut button');
-
-
     toggleVisibility('li > a#logOut.menu__item');
 }
 
