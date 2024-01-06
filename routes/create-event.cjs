@@ -31,6 +31,7 @@ router.post('/', upload.single('imageFile'), async (req, res, next) => {
         if (req.file) {
             const bucket = fadmin.storage().bucket();
             const uid = req.body.uid;
+            const event_doc_id = req.body.event_doc_id;      
             const currentDate = new Date().toISOString().split('T')[0];     // "YYYY-MM-DD"
             const fileName = `${req.file.originalname}-${uid}-${currentDate}.png`;      
             const blob = bucket.file(fileName);
@@ -59,10 +60,12 @@ router.post('/', upload.single('imageFile'), async (req, res, next) => {
                     imageFile: imageUrl,  
                     createdBy: uid, 
                 };
-
-                console.log(event)
-
-                await db.collection('events').doc().set(event);
+                
+                if (event_doc_id){
+                    await db.collection('events').doc(event_doc_id).set(event);
+                } else {
+                    await db.collection('events').doc().set(event);
+                }
 
                 return res.status(201).json({
                     message: 'Event created successfully',

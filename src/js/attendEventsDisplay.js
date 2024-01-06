@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const userChecked = auth.currentUser;
                 const uid = userChecked.uid;
                 
-                // Make an AJAX request to the server to record attendance
                 await fetch('/events/unattend', {
                     method: 'POST',
                     headers: {
@@ -121,7 +120,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
                             <td><img src="${event.data.imageFile}" style="max-width: 450px; max-height: 700px;"></td>                              
-                            <td><button class="attended-button" data-event-doc-id="${event.id}">Unattend</button></td>                              
+                            <td>
+                                <button class="edit-button" data-event-doc-id="${event.id}">Edit</button>                              
+                                <button class="delete-button" data-event-doc-id="${event.id}">Delete</button>
+                            </td>                              
                         </tr>`;
             });
 
@@ -129,16 +131,15 @@ document.addEventListener('DOMContentLoaded', async function () {
             tbody.innerHTML = tableRows.join('');
         }
 
-        // Attach a click event listener to the "Remove" button
-        document.querySelectorAll('.attended-button').forEach(button => {
+        // Attach a click event listener to the "Delete" button
+        document.querySelectorAll('.delete-button').forEach(button => {
             button.addEventListener('click', async function () {
 
                 const event_doc_id = this.dataset.eventDocId;
                 const userChecked = auth.currentUser;
                 const uid = userChecked.uid;
                 
-                // Make an AJAX request to the server to record attendance
-                await fetch('/events/unattend', {
+                await fetch('/events/delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -164,6 +165,16 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
             });
         });
+
+        // Attach a click event listener to the "Edit" button
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', async function () {
+                const event_doc_id = this.dataset.eventDocId;
+
+                window.location.href = `/eventedit?edi=${event_doc_id}`;
+            });
+        });
+
     }
 
 });

@@ -49,7 +49,6 @@ router.get('/all/created/:id', async (req, res, next) => {
     try {
         const uid = req.params.id;
 
-        ////
         const eventsRef = db.collection('events');
         const eventsRes = await eventsRef.get();
         const responseArr = [];

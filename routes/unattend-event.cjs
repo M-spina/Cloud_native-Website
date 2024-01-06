@@ -7,7 +7,7 @@ router.post('/', async (req, res, next) => {
     try {
         
         const event_doc_id = req.body.event_doc_id;
-        const uid = req.body.uid; // Access the current user's UID
+        const uid = req.body.uid; 
         
         const db = fadmin.firestore();  
 

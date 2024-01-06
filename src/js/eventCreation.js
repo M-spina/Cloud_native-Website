@@ -23,10 +23,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
-
+    const event_doc_id = "";
     try {
         const formData = new FormData();
         formData.append('uid', uid);
+        formData.append('event_doc_id', event_doc_id);
         formData.append('name', document.getElementById('eventName').value);
         formData.append('location', document.getElementById('eventLocation').value);
         formData.append('category', document.getElementById('category').value);
@@ -40,10 +41,10 @@ document.getElementById('form').addEventListener('submit', async function (event
             body: formData
         });
 
-        const data = await response.json();
+        await response.json();
 
         if (response.ok) {
-            window.location.href = '/events'
+            window.location.href = '/attendance'
         } else {
             window.location.href = '/eventcreation'
         }

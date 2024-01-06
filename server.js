@@ -60,27 +60,37 @@ app.get('/statistics', (req, res) => {
     res.render('statistics')
 })
 
+app.get('/eventedit', (req, res) => {
+    res.render('editEvent')
+})
+
 // APIs Routing
-const registerAPI = require('./routes/register-submit')
+const registerAPI = require('./routes/register-submit.cjs')
 app.use('/register/submit', registerAPI)
 
-const createEventAPI = require('./routes/create-event')
+const createEventAPI = require('./routes/create-event.cjs')
 app.use('/events/create', createEventAPI)
 
-const showEventAPI = require('./routes/show-events')
+const showEventAPI = require('./routes/show-events.cjs')
 app.use('/events/show', showEventAPI)
 
-const attendEventAPI = require('./routes/attend-event')
+const attendEventAPI = require('./routes/attend-event.cjs')
 app.use('/events/attend', attendEventAPI)
 
-const showAttEventAPI = require('./routes/show-att-events')
+const showAttEventAPI = require('./routes/show-att-events.cjs')
 app.use('/att-events/show', showAttEventAPI)
 
-const removeEventAPI = require('./routes/unattend-event')
-app.use('/events/unattend', removeEventAPI)
+const unattendEventAPI = require('./routes/unattend-event.cjs')
+app.use('/events/unattend', unattendEventAPI)
 
-const statisticsAPI = require('./routes/show-statistics')
+const statisticsAPI = require('./routes/show-statistics.cjs')
 app.use('/statistics/show', statisticsAPI)
+
+const deleteEventAPI = require('./routes/delete-event.cjs')
+app.use('/events/delete', deleteEventAPI)
+
+const editEventAPI = require('./routes/edit-event.cjs')
+app.use('/events/edit', editEventAPI)
 
 // Error Handling if path not found
 app.use((req, res, next) => {

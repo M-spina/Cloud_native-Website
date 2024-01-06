@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="module" defer src="js/eventEdit.js"></script>
+    <script defer src="js/Animation.js"></script>
+    <script defer type="module" src="js/logOut.js"></script>
+    <title>University Events Manager</title>
+</head>
+
+<body>
+
+    <header>
+        <a class="nav__links_home" href="/">
+            <h1 class="ani">University Events Manager</h1>
+        </a>
+        <nav>
+            <ul class="nav__links">
+                <li style="display: none;"><a href="/login">Login</a></li>
+                <li style="display: none;"><a href="/events">Events</a></li>
+                <li style="display: none;"><a href="/attendance">Attendance</a></li>
+                <li style="display: none;"><a href="/report">Report</a></li>
+            </ul>
+        </nav>
+
+        <a class="cta" id="logOut" style="display: none;"><button>Log out</button></a>
+
+
+        <div class="hamburger-menu" style="background-color: transparent; width: 50px;">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span class="asad"></span>
+            </label>
+
+            <ul class="menu__box" style="height: 400px;">
+                <li style="display: none;"><a class="menu__item" href="/login">Login</a></li>
+                <li style="display: none;"><a class="menu__item" href="/events">Events</a></li>
+                <li style="display: none;"><a class="menu__item" href="/attendance">Attendance</a></li>
+                <li style="display: none;"><a class="menu__item" href="/report">Report</a></li>
+                <li><a class="menu__item" id="logOut" style="display: none;"><button class="ext_btn">Log out</button></a></li>
+
+
+            </ul>
+        </div>
+    </header>
+
+    <main class="hidden c2">
+        <div class="containerForm" style="position:relative; top: 50px; padding-bottom: 50px;">
+            <form id="form" action="/events/edit" method="POST" autocomplete="off" enctype="multipart/form-data">
+                <h2><strong>Edit Event</strong></h2>
+                <div class="input-control">
+                    <label for="eventName"><strong>Name</strong></label>
+                    <input id="eventName" name="eventName" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventLocation"><strong>Location</strong></label>
+                    <input id="eventLocation" name="eventLocation" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="category"><strong>Category</strong></label>
+                    <select id="category" name="category">
+                        <option>Academic Lectures/Seminars</option>
+                        <option>Art Exhibitions and Performances</option>
+                        <option>Career Fairs and Networking</option>
+                        <option>Cultural Festivals</option>
+                        <option>Food/Drinks</option>
+                        <option>Games/Gaming</option>
+                        <option>Health and Wellness Programs</option>
+                        <option>Social Gatherings and Parties</option>
+                        <option>Sports</option>
+                        <option>Student Club and Organization Meetings</option>
+                    </select>
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventstartDate"><strong>Start Date</strong></label>
+                    <input id="eventstartDate" name="eventstartDate" type="date">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventendDate"><strong>End Date</strong></label>
+                    <input id="eventendDate" name="eventendDate" type="date">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="eventDescription"><strong>Description</strong></label>
+                    <textarea rows="5" placeholder="Enter description" id="eventDescription"
+                        name="eventDescription"></textarea>
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="imageFile"><strong>Image File (Limit 10MB)</strong> </label>
+                    <input id="imageFile" name="imageFile" type="file">
+                    <div class="error"></div>
+                </div>
+                <button type="submit"><strong>Edit</strong></button>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

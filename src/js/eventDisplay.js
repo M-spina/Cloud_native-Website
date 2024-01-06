@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return response.json();
             })
             .then(data => {
-                // Assuming data is an array of event objects
-                // Update the table in events.ejs with the retrieved data
                 updateTable(data);
             })
             .catch(error => {

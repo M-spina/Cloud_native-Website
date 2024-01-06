@@ -81,10 +81,4 @@ router.get('/ext', async (req, res, next) => {
 
 });
 
-router.delete('/:eventId', (req, res, next) => {
-    res.status(200).json({
-        message: 'event deleted!',
-    });
-});
-
 module.exports = router;
