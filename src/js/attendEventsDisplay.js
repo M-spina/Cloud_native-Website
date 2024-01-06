@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             <td>${event.data.location}</td>
                             <td>${event.data.startdate}</td>
                             <td>${event.data.enddate}</td>
-                            <td><img src="${event.data.imageFile}" style="max-width: 800px; max-height: 1000px;"></td>                              
+                            <td><img src="${event.data.imageFile}" style="max-width: 500px; max-height: 750px;"></td>                              
                             <td><button class="remove-button" data-event-doc-id="${event.id}">Unattend</button></td>                              
                         </tr>`;
             });
