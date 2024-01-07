@@ -42,7 +42,6 @@ function updateTotalUsersChart(registrationData) {
 
     registrationData.sort((a, b) => new Date(a.registrationDate) - new Date(b.registrationDate));
 
-    //const labels = registrationData.map(entry => entry.registrationDate);
     const labels = registrationData.map(entry => new Date(entry.registrationDate));
     const dataValues = registrationData.map(entry => entry.totalUsers);
 
@@ -76,7 +75,7 @@ function updateTotalUsersChart(registrationData) {
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        precision: 0, // Set precision to 0 to display integers
+                        precision: 0,   // display integers
                     },
                 },
             },

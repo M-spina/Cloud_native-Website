@@ -76,40 +76,4 @@ router.get('/all/created/:id', async (req, res, next) => {
 
 });
 
-
-
-///////
-
-router.get('/:id', async (req, res, next) => {
-    
-    try {
-
-        const eventRef = db.collection('events').doc(req.params.id);
-        const response = await eventRef.get();
-
-        res.send(response.data());
-
-    } catch (err) {
-        // Handle error
-        console.error(err);
-        res.status(500).json({
-            code: err.code,
-            error: err.message
-        });
-    }
-
-});
-
-router.patch('/:eventId', (req, res, next) => {
-    res.status(200).json({
-        message: 'event updated!',
-    });
-});
-
-router.delete('/:eventId', (req, res, next) => {
-    res.status(200).json({
-        message: 'event deleted!',
-    });
-});
-
 module.exports = router;

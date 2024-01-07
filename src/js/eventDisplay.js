@@ -37,8 +37,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return response.json();
             })
             .then(data => {
-                // Assuming data is an array of event objects
-                // Update the table in events.ejs with the retrieved data
                 updateTableExt(data);
             })
             .catch(error => {
@@ -82,7 +80,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const userChecked = auth.currentUser;
                 const uid = userChecked.uid;
                 
-                // Make an AJAX request to the server to record attendance
                 await fetch('/events/attend', {
                     method: 'POST',
                     headers: {

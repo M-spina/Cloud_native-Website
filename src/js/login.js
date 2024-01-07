@@ -50,7 +50,6 @@ document.getElementById('googleSignIn').addEventListener('click', async function
     try {
         const db = getFirestore(app);
 
-        // Create a GoogleAuthProvider instance
         const provider = new GoogleAuthProvider();
 
         // Sign in with a popup
